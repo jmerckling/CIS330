@@ -9,10 +9,12 @@
 char* getUserChoice() {
     /* Prompt the user "Enter rock, paper, or scissors: " and return
        the string they enter */
-       char* choice;
-       printf("Enter rock, paper, or scissors: ");
-       scanf("%s",choice);
-       return choice;
+       	char* choice;
+	choice = (char *) malloc(15);
+       	printf("Enter rock, paper, or scissors: ");
+       	scanf("%s",choice);
+       	return choice;
+	free(choice);
 }
 char* getComputerChoice() {
     srand (time(NULL));
