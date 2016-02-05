@@ -4,7 +4,7 @@
 
 //toMorse implementation
 std::string MorseEncoder::toMorse(char letter){
-  std::string text = "abcdefghijklmnopqrstuvwqyz"; //lower case alphabet to compare
+  std::string text = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; //UPPER case alphabet to compare
     std::string morse[] = {".- ","-... ","-.-. ","-.. ", ". ", "..-. ", "--. ",
                       ".... ", ".. ", ".--- ", "-.- ", ".-.. ", "-- ",
                       "-. ", "--- ", ".--. ", "--.- ", ".-. ", "... ", "- ",
