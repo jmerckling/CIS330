@@ -41,8 +41,12 @@ void setGame(struct board *b1, struct board *b2)
     char fName2[] = "board2.txt";
 
     //load in random board for each player
-    randMap(b1);
-    randMap(b2);
+    //randMap(b1);
+    //randMap(b2);
+
+    //make boards for each player
+    loadBoard(fName1, b1);
+    loadBoard(fName2, b2);
 }
 
 //read from file to make a player board
@@ -242,7 +246,7 @@ void playerTurn(int player, struct board *myBoard, struct board *enemyBoard)
     while(shotCoords !=2 || (col < 0 || col > enemyBoard->boardSize - 1) || (row < 0 || row > enemyBoard->boardSize - 1))
     {
         printf("Invalid Coordinates!\n");
-        printf("Enter coordinates to be fired upon in column(A - J), row(0 - %d) format.(for example C4 or J2): ");
+        printf("Enter coordinates to be fired upon in column(A - J), row(0 - %d) format.(for example C4 or J2): ", myBoard -> boardSize);
         shotCoords = scanf("%c%d", &col, &row);
         emptyBuffer();
         col -= 'A';
@@ -270,3 +274,38 @@ void playerTurn(int player, struct board *myBoard, struct board *enemyBoard)
     getchar();
     printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 }
+//function for AI player
+void aiPlayer(struct board *b)
+{
+    int col = 0;
+    int row = 0;
+
+    //fire in random locations, do not hit same spot twice.
+    char point = 'X';
+    do
+    {
+        col = rand() % b->boardSize;
+        row = rand() % b->boardSize;
+        point = *(b->map + (row * (b->boardSize + 1)) + col);
+    }
+    while(point == 'X' || point == '-');
+
+    shoot(b, col, row);
+}
+
+//check if a player has lost all of their ships
+int checkLoss(struct board *b)
+{
+    return (b->sunkShips >= b->shipCount);
+}
+
+//function to clear input
+void emptyBuffer()
+{
+    char c = '\n';
+    while(c = getchar() != '\n' && c != EOF)
+    {
+        //do nothing
+    }
+}
+

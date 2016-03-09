@@ -26,5 +26,8 @@ void randMap(struct board* b);
 void printBoard(struct board *b, int viewAll);
 int shoot(struct board* b, int col, int row);
 void playerTurn(int player, struct board *myBoard, struct board *enemyBoard);
+void aiPlayer(struct board *b);
+int checkLoss(struct board *b);
+void emptyBuffer();
 
 #endif
