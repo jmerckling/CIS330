@@ -5,10 +5,11 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
-
+#include <ctype.h>
 
 #define HORIZONTAL 0
 #define VERTICAL 1
+int AIPlayer;
 
 struct board
 {

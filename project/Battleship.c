@@ -40,13 +40,77 @@ void setGame(struct board *b1, struct board *b2)
     char fName1[] = "board1.txt";
     char fName2[] = "board2.txt";
 
+	//find out player amount 
+	//see if they prepared boards 
+     int numPlayers = 0;
+	 printf("Will this be a 1 or 2 player game enter (1 or 2): ");
+	 scanf("%d", &numPlayers);
+	 emptyBuffer();
+     while (numPlayers != 1 && numPlayers != 2)
+     {
+            printf("Invalid Input!\n");
+            printf("Will this be a 1 or 2 player game enter (1 or 2): ");
+            scanf("%d", &numPlayers);
+	    emptyBuffer();
+     }
+     //options for single player game
+     if(numPlayers == 1)
+     {
+	 AIPlayer = 1;
+         char answer = ' ';
+         printf("Did you prepare a board in \"board1.txt\"? Enter y or n: ");
+         scanf("%c", &answer);
+	 emptyBuffer();
+        while (answer != 'y' && answer != 'n')
+        {
+            printf("Invalid Input!\n");
+            printf("Did you prepare a board in \"board1.txt\"? Enter y or n: ");
+            scanf("%c", &answer);
+	    emptyBuffer();
+        }
+        if(answer == 'y')
+        {
+            loadBoard(fName1, b1);
+            randMap(b2);
+        }
+        else
+        {
+            randMap(b1);
+            randMap(b2);
+        }
+     }
+     //option for 2 players
+     else
+     {
+        char answer = ' ';
+         printf("Did you prepare a boards in \"board1.txt\" and \"board2.txt\"? Enter y or n: ");
+         scanf("%c", &answer);
+	 emptyBuffer();
+        while (answer != 'y' && answer != 'n')
+        {
+            printf("Invalid Input!\n");
+            printf("Did you prepare a boards in \"board1.txt\" and \"board2.txt\"? Enter y or n: ");
+            scanf("%c", &answer);
+	    emptyBuffer();
+        }
+        if(answer == 'y')
+        {
+            loadBoard(fName1, b1);
+            loadBoard(fName2, b2);
+        }
+        else
+        {
+            randMap(b1);
+            randMap(b2);
+        }
+     }
     //load in random board for each player
     //randMap(b1);
     //randMap(b2);
 
     //make boards for each player
-    loadBoard(fName1, b1);
-    loadBoard(fName2, b2);
+    //loadBoard(fName1, b1);
+    //loadBoard(fName2, b2);
 }
 
 //read from file to make a player board
@@ -236,7 +300,7 @@ void playerTurn(int player, struct board *myBoard, struct board *enemyBoard)
     printBoard(enemyBoard, 0);
     printf("Here are your ships current locations and condition!\n");
     printBoard(myBoard, 1);
-    printf("Enter coordinates to be fired upon in column(A - J), row(0 - %d) format. (for example C4 or J2): ", myBoard -> boardSize);
+    printf("Enter coordinates to be fired upon in column(A - J), row(0 - %d) form. (for example C4 or J2): ", myBoard -> boardSize);
     //get coords to shoot
     shotCoords = scanf("%c%d", &col, &row);
     emptyBuffer();// clear input buffer
@@ -246,7 +310,7 @@ void playerTurn(int player, struct board *myBoard, struct board *enemyBoard)
     while(shotCoords !=2 || (col < 0 || col > enemyBoard->boardSize - 1) || (row < 0 || row > enemyBoard->boardSize - 1))
     {
         printf("Invalid Coordinates!\n");
-        printf("Enter coordinates to be fired upon in column(A - J), row(0 - %d) format.(for example C4 or J2): ", myBoard -> boardSize);
+        printf("Enter coordinates to be fired upon in column(A - J), row(0 - %d) form.(for example C4 or J2): ", myBoard -> boardSize);
         shotCoords = scanf("%c%d", &col, &row);
         emptyBuffer();
         col -= 'A';

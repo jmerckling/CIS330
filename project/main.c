@@ -9,11 +9,23 @@ int main(int argc, char *argv[])
 
     printf("Time to play Battleship!\n_______________________________\n_______________________________\n");
     printf("\n");
+    if(AIPlayer == 1)
+    {
+	printf("You will be using this board\n");
+   	printBoard(&b1, 1);
+	printf("\n");
+   	printf("The AI's board is ready\n");
+    	//printBoard(&b2, 0);
 
-    printf("player 1 will be using this board\n");
-    printBoard(&b1, 1);
-    printf("player 2 will be using this board\n");
-    printBoard(&b2, 1);
+    }
+    else
+    {
+    	printf("player 1 will be using this board\n");
+    	printBoard(&b1, 1);
+    	printf("player 2 will be using this board\n");
+    	printBoard(&b2, 1);
+    }
+    printf("\n");
     printf("Let's begin!\n");
 
     //player one set as user
@@ -28,8 +40,14 @@ int main(int argc, char *argv[])
         }
         else
         {
-            //playerTurn(curPlayer, &b2, &b1);
-            aiPlayer(&b1);
+	    if(AIPlayer == 1)
+	    {
+		aiPlayer(&b1);
+	    }
+	    else
+	    {
+		playerTurn(curPlayer, &b2, &b1);
+	    }
             curPlayer--;
         }
     }
