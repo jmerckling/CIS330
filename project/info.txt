@@ -1,0 +1,9 @@
+Battle Ship game general rules and setup:
+For my battle ship you have five total ships they are the Patrol Boat, Destroyer, Submarine, Battle Ship, and the Aircraft Carrier.
+Each ship is represented by the numbers 1-5, in the order they are listed above respectively.
+To set up your owwn board open "board1.txt" and/or for a two player game "board2.txt". Place your numbers representing the ship in a 10x10 grid
+with 0s to represent water, the ships get to take up two, three, three, four, and five grids respectively, for example to place your Destroyer
+represented by '2' and takes up three spaces you would put "222" horizontally or vetically in your grid.
+
+Important note: when entering in coordinates to fire on you must use capital leters to represent the column, also you are allowed to fire
+upon the same position twice the result will not change, but this is intentional.
