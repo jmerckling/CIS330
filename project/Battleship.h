@@ -5,10 +5,11 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
-
+#include <ctype.h>
 
 #define HORIZONTAL 0
 #define VERTICAL 1
+int AIPlayer;
 
 struct board
 {
@@ -26,5 +27,8 @@ void randMap(struct board* b);
 void printBoard(struct board *b, int viewAll);
 int shoot(struct board* b, int col, int row);
 void playerTurn(int player, struct board *myBoard, struct board *enemyBoard);
+void aiPlayer(struct board *b);
+int checkLoss(struct board *b);
+void emptyBuffer();
 
 #endif
